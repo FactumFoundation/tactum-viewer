@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  StrataViewer landing page. A single static file, deployed at
+  Strata Viewer landing page. A single static file, deployed at
   https://factumfoundation.xyz/strata-viewer/ next to the demo.
   The DOI in "Cite this software" is the Zenodo concept DOI, which
   always resolves to the latest archived release.
@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StrataViewer</title>
+<title>Strata Viewer</title>
 <meta name="description" content="Open source web viewer for high resolution surface scans. Streams tiled albedo and height data as a relief you can relight, measure and inspect in the browser.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <style>
@@ -261,7 +261,7 @@
 <body>
 
 <header class="top">
-  <h1>StrataViewer</h1>
+  <h1>Strata Viewer</h1>
   <p>An open source web viewer that streams high resolution surface scans
      as a relief you can relight, measure and inspect in the browser.</p>
   <div class="top-links">
@@ -275,7 +275,7 @@
        covers it when the demo has loaded. -->
   <div class="frame">
     <iframe src="https://factumfoundation.xyz/strata-viewer/demo/?embed"
-            title="StrataViewer live demo: nature-printed moss, Alois Auer, 1853"
+            title="Strata Viewer live demo: nature-printed moss, Alois Auer, 1853"
             loading="eager" allow="fullscreen"></iframe>
   </div>
   <p class="viewer-hint">
@@ -287,8 +287,8 @@
 <main>
   <section id="what-it-does">
     <span class="eyebrow">What it does</span>
-    <h2>A scientific instrument for scanned surfaces</h2>
-    <p class="lead">StrataViewer reads the output of photometric stereo,
+    <h2>An instrument for scanned surfaces</h2>
+    <p class="lead">Strata Viewer reads the output of photometric stereo,
     laser line scanning and photogrammetry, and turns it into a streamed
     3D relief on any WebGL browser.</p>
     <div class="features">
@@ -305,7 +305,7 @@
       <div class="feature">
         <img src="manual/images/demo-first-view.jpg" alt="The moss plate rendered as a lit relief">
         <h3>Stream</h3>
-        <p>A quadtree loads tiles at the right detail for the view, up to gigapixel scans.</p>
+        <p>A quadtree loads tiles at the right detail for the view, tested with scans of 200 million pixels.</p>
       </div>
       <div class="feature">
         <img src="manual/images/iiif-osd.jpg" alt="The same dataset opened as a deep zoom image in OpenSeadragon">
@@ -332,7 +332,7 @@
           <tr>
             <td>Albedo TIFF</td>
             <td>The same scan</td>
-            <td>16 bit RGB. Becomes the colour layer.</td>
+            <td>16 bit RGB, the same pixel dimensions as the depthmap. Becomes the colour layer.</td>
           </tr>
           <tr>
             <td>Strata dataset</td>
@@ -352,6 +352,8 @@
         </tbody>
       </table>
     </div>
+    <p class="lead" style="margin-top:16px">The conversion runs on your own
+    computer. The scan is not uploaded anywhere.</p>
   </section>
 
   <section id="quick-start">
@@ -382,7 +384,7 @@ const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });
   <section id="cite">
     <span class="eyebrow">Cite this software</span>
     <h2>For research use</h2>
-    <p class="lead">If StrataViewer is part of your documentation or research
+    <p class="lead">If Strata Viewer is part of your documentation or research
     workflow, please cite it.</p>
     <p style="margin-top:16px"><a class="doi" href="https://doi.org/10.5281/zenodo.21614286">DOI 10.5281/zenodo.21614286</a></p>
     <div class="codeblock">
@@ -390,7 +392,7 @@ const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });
       <button class="copy" data-copy="bib">Copy</button>
       <pre id="bib">@software{cano_strataviewer_2026,
   author  = {Cano, Jorge},
-  title   = {StrataViewer},
+  title   = {Strata Viewer},
   year    = {2026},
   url     = {https://github.com/FactumFoundation/strata-viewer},
   doi     = {10.5281/zenodo.21614286}
@@ -412,7 +414,7 @@ const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });
     </div>
     <div class="footer-row">
       <span>Sample: nature-printed moss, Alois Auer, 1853. Private collection of Adam Lowe.</span>
-      <a href="https://factumfoundation.xyz/strata-viewer/gallery.html">More examples</a>
+      <a href="https://factumfoundation.xyz/strata-viewer/gallery.html">Technical examples</a>
     </div>
   </div>
 </footer>
