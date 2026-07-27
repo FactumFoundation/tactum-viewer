@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strata Viewer</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: 'SF Mono', 'Cascadia Code', 'Consolas', 'Menlo', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 24px 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1 {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      max-width: 860px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 28px 24px;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: transparent;
+      transition: background 0.3s;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .card:hover::before {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .card h2 {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card .tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid;
+    }
+
+    .tag.core {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .tag.streaming {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .tag.relief {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Strata Viewer</h1>
+  <p style="font-size:11px;letter-spacing:0.06em;color:rgba(255,255,255,0.3);margin-top:-36px;margin-bottom:48px;">A 3D tile streaming viewer for high resolution surface scans.</p>
+
+  <div class="grid">
+    <a class="card" href="demo/">
+      <h2>Demo - Strata Viewer</h2>
+      <p>
+        Nature-printed moss plate (Alois Auer, 1853).
+        Full-featured relief viewer: relighting, measurement, shadows.
+      </p>
+      <span class="tag relief">relief</span>
+    </a>
+
+    <a class="card" href="examples/01-quadtree-basico/">
+      <h2>01 - Quadtree</h2>
+      <p>
+        Dynamic quadtree with procedural Canvas 2D textures.
+        SSE-based LOD, priority budget, fade-in.
+      </p>
+      <span class="tag core">core</span>
+    </a>
+
+    <a class="card" href="examples/02-streaming/">
+      <h2>02 - Streaming</h2>
+      <p>
+        On-demand tile loading from disk.
+        Procedural placeholder, real texture swap, texture cache.
+      </p>
+      <span class="tag streaming">streaming</span>
+    </a>
+
+    <a class="card" href="examples/iiif-test/">
+      <h2>IIIF Interoperability</h2>
+      <p>
+        Static test pages that open the dataset in Mirador, Universal Viewer and OpenSeadragon.
+        Interop check against third-party IIIF viewers.
+      </p>
+      <span class="tag streaming">streaming</span>
+    </a>
+  </div>
+
+  <div style="margin-top:48px;font-size:10px;letter-spacing:0.08em;color:rgba(255,255,255,0.15);">
+    &copy; 2026 Jorge Cano. MIT License
+  </div>
+</body>
+</html>

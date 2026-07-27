@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IIIF test - OpenSeadragon</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <style>
+    html, body { height: 100%; margin: 0; background: #0a0a0a; }
+    #osd { width: 100%; height: 100%; }
+    #bar { position: fixed; top: 8px; left: 8px; z-index: 10; font: 11px monospace; }
+    #bar button { background: #1a1a1a; color: #ccc; border: 1px solid #333; padding: 4px 10px; cursor: pointer; }
+    #bar button.active { border-color: #888; color: #fff; }
+  </style>
+</head>
+<body>
+  <div id="bar"></div>
+  <div id="osd"></div>
+  <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1/build/openseadragon/openseadragon.min.js"></script>
+  <script>
+    // dev-only page: exercises each channel's info.json directly (pure Image API check).
+    const base = new URLSearchParams(location.search).get('base')
+      || '../../moss/iiif';
+    const channels = ['albedo', 'height_hf', 'height_full'];
+    const viewer = OpenSeadragon({
+      id: 'osd',
+      prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@4.1/build/openseadragon/images/',
+      tileSources: new URL(`${base}/albedo/info.json`, location.href).href,
+      showNavigator: true,
+    });
+    const bar = document.getElementById('bar');
+    for (const ch of channels) {
+      const b = document.createElement('button');
+      b.textContent = ch;
+      if (ch === 'albedo') b.classList.add('active');
+      b.onclick = () => {
+        bar.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        viewer.open(new URL(`${base}/${ch}/info.json`, location.href).href);
+      };
+      bar.appendChild(b);
+    }
+  </script>
+</body>
+</html>

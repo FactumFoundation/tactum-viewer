@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IIIF test - Universal Viewer</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/universalviewer@4.0.25/dist/uv.css" />
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: #0a0a0a; }
+    #uv { width: 100vw; height: 100vh; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/universalviewer@4.0.25/dist/umd/UV.js"></script>
+</head>
+<body>
+  <div id="uv" class="uv"></div>
+  <script>
+    // dev-only page: verifies the static IIIF package in Universal Viewer
+    // (mirrors the official dist/uv.html embed template, UMD build).
+    // Usage: /examples/iiif-test/uv.html?manifest=<url>  (default: moss, local)
+    document.addEventListener('DOMContentLoaded', function () {
+      const param = new URLSearchParams(location.search).get('manifest')
+        || '../../moss/iiif/manifest.json';
+      const manifest = new URL(param, location.href).href;
+      window.uv = UV.init('uv', { manifest, embedded: true });
+    });
+  </script>
+</body>
+</html>

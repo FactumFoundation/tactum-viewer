@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strata Demo - Nature-printed moss (Alois Auer, 1853)</title>
+  <link rel="stylesheet" href="../examples/shared.css" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <style>
+    /* Embed mode (?embed): only the piece, no instrumentation */
+    body.embed #hud, body.embed #controls, body.embed #help,
+    body.embed #infoToggle, body.embed #lightToggle,
+    body.embed #measureToggle { display: none !important; }
+  </style>
+</head>
+<body>
+  <div id="hud"></div>
+
+  <div id="controls" class="collapsed">
+    <div class="title" id="controlsToggle">Strata Demo - Nature-printed moss (Alois Auer, 1853)</div>
+    <div class="controls-body">
+
+    <label><input type="checkbox" id="axisHelper"> Axis helper</label>
+    <label><input type="checkbox" id="debugWires"> Debug wireframes</label>
+    <label><input type="checkbox" id="meshWire"> Mesh wireframe</label>
+    <label><input type="checkbox" id="tileFade"> Tile fade</label>
+    <label><input type="checkbox" id="debugLabels"> Tile labels (HUD)</label>
+
+    <div class="section">
+      <label><input type="radio" name="heightField" value="height_hf" checked> Relief only (HF)<span id="heightHfRange"></span></label>
+      <label><input type="radio" name="heightField" value="height_full"> Full surface<span id="heightFullRange"></span></label>
+    </div>
+
+    <div class="section">
+      <label><input type="checkbox" id="surfaceOrbit" checked> Orbit around view centre</label>
+      <label><input type="checkbox" id="showPivot"> Show orbit pivot</label>
+    </div>
+
+    <div class="section">
+      <label>Max SSE: <input type="range" id="sseSlider" min="1" max="150" value="30" step="1"> <span id="sseVal">30</span></label>
+      <label>Max tiles: <input type="range" id="maxTilesSlider" min="50" max="800" value="400" step="50"> <span id="maxTilesVal">400</span></label>
+      <label>Split floor: <input type="range" id="splitFloorSlider" min="0.5" max="1" value="0.5" step="0.05"> <span id="splitFloorVal">0.50</span></label>
+    </div>
+
+    <div class="section">
+      <label>Z exaggeration: <input type="range" id="zExagSlider" min="0.1" max="15" value="4.0" step="0.1"> <span id="zExagVal">4.0</span></label>
+    </div>
+
+    <div class="section">
+      <label><input type="checkbox" id="animateLight"> Animate light</label>
+    </div>
+
+    <div class="section">
+      <label><input type="radio" name="background" value="flat"> Flat background</label>
+      <label><input type="radio" name="background" value="spotlight"> Spotlight</label>
+      <label><input type="radio" name="background" value="space" checked> Space</label>
+      <label><input type="radio" name="background" value="black"> Black</label>
+      <label><input type="checkbox" id="floorGrid"> Floor grid</label>
+    </div>
+
+    <div class="section">
+      <label><input type="checkbox" id="shadowToggle" checked> Shadows</label>
+      <label>Shadow bias: <input type="range" id="shadowBias" min="0.0001" max="0.01" value="0.0010" step="0.0001"> <span id="shadowBiasVal">0.0010</span></label>
+      <label>Shadow intensity: <input type="range" id="shadowIntensity" min="0" max="1" value="1.0" step="0.05"> <span id="shadowIntensityVal">1.0</span></label>
+      <label>Shadow softness: <input type="range" id="shadowSoftness" min="0" max="3" value="0.1" step="0.1"> <span id="shadowSoftnessVal">0.1</span></label>
+    </div>
+
+    <div class="section">
+      <a href="#" id="measureClear">Clear measurements</a>
+      <a href="../">← Main menu</a>
+    </div>
+
+    </div>
+  </div>
+
+  <button id="infoToggle" aria-label="Piece information" style="display:none">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></svg>
+  </button>
+  <button id="lightToggle" aria-label="Toggle light control mode">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M4.9 19.1l2.1-2.1M16.9 7.1l2.1-2.1"/></svg>
+  </button>
+  <button id="measureToggle" aria-label="Toggle measure mode">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20 20 4"/><path d="m7.5 16.5 1.8 1.8M10.5 13.5l1.8 1.8M13.5 10.5l1.8 1.8M16.5 7.5l1.8 1.8"/></svg>
+  </button>
+  <div id="help">LMB: orbit &nbsp;|&nbsp; RMB: pan &nbsp;|&nbsp; Scroll: zoom &nbsp;|&nbsp; Shift+LMB: light direction</div>
+
+  <script type="module" src="../examples/context-menu.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

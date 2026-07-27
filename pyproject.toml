@@ -1,0 +1,21 @@
+[project]
+name = "strata-viewer-scripts"
+version = "1.0.0"
+description = "Tile generation scripts for the Strata viewer"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0",
+    "pillow>=10.0",
+    "tifffile>=2024.0",
+    "imagecodecs>=2024.0",
+    "scipy>=1.14",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

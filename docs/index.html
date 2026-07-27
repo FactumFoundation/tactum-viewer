@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--
+  StrataViewer landing page. Single static file for GitHub Pages.
+
+  Before publishing, replace:
+  1. The Zenodo DOI in the "Cite this software" section (two places:
+     the link and the BibTeX block). Mint it by archiving the GitHub
+     release on Zenodo.
+  3. If the manual moves, the Documentation links point at
+     https://github.com/FactumFoundation/strata-viewer/blob/main/docs/manual/index.md
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StrataViewer</title>
+<meta name="description" content="Open source web viewer for high resolution surface scans. Streams tiled albedo and height data as a relief you can relight, measure and inspect in the browser.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --text: #e8e6e2;
+    --muted: #9a968f;
+    --line: #262626;
+    --accent: #b5b83c;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, Menlo, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Header and framed viewer ─────────────────────────────────── */
+  .top {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 20px 0;
+  }
+  .top h1 {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .top p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 60ch;
+  }
+  .top-links {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .viewer-frame {
+    max-width: 880px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+  }
+  .viewer-frame .frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--line);
+    background: url("assets/hero.jpg") center / cover no-repeat;
+  }
+  .viewer-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .viewer-hint {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  /* ── Sections ─────────────────────────────────────────────────── */
+  main { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 88px 0 0; }
+  section:last-of-type { padding-bottom: 88px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 6px 0 18px;
+  }
+  p.lead { color: var(--muted); max-width: 60ch; }
+
+  /* What it does */
+  .features {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 28px;
+  }
+  @media (max-width: 560px) {
+    .features { grid-template-columns: 1fr; }
+  }
+  .feature img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  .feature h3 {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 12px 0 4px;
+  }
+  .feature p { font-size: 14px; color: var(--muted); }
+
+  /* Input formats */
+  .table-wrap { overflow-x: auto; margin-top: 8px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 640px;
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    font-weight: 600;
+  }
+  th, td {
+    padding: 10px 16px 10px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  td:first-child { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+
+  /* Quick start */
+  .codeblock {
+    position: relative;
+    margin-top: 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .codeblock pre {
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .codeblock .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 18px 0;
+    display: block;
+  }
+  .copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    cursor: pointer;
+  }
+  .copy:hover { color: var(--text); border-color: var(--muted); }
+
+  /* Cite */
+  .doi {
+    font-family: var(--mono);
+    font-size: 13px;
+    display: inline-block;
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    margin-bottom: 8px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 88px;
+    border-top: 1px solid var(--line);
+    padding: 28px 20px 40px;
+  }
+  .footer-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 28px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .footer-inner img {
+    height: 22px;
+    width: auto;
+    filter: invert(1) brightness(0.72);
+  }
+
+  @media (max-width: 640px) {
+    section { padding-top: 64px; }
+    .top { padding-top: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>StrataViewer</h1>
+  <p>An open source web viewer that streams high resolution surface scans
+     as a relief you can relight, measure and inspect in the browser.</p>
+  <div class="top-links">
+    <a href="https://github.com/FactumFoundation/strata-viewer">View on GitHub</a>
+    <a href="https://github.com/FactumFoundation/strata-viewer/blob/main/docs/manual/index.md">Documentation</a>
+  </div>
+</header>
+
+<section class="viewer-frame">
+  <!-- The live viewer. The still image behind it paints first, the iframe
+       covers it when the demo has loaded. -->
+  <div class="frame">
+    <iframe src="https://factumfoundation.xyz/strata-viewer/demo/?embed"
+            title="StrataViewer live demo: nature-printed moss, Alois Auer, 1853"
+            loading="eager" allow="fullscreen"></iframe>
+  </div>
+  <p class="viewer-hint">
+    <span>Drag to orbit. Scroll to zoom. Shift and drag to move the light.</span>
+    <a href="https://factumfoundation.xyz/strata-viewer/demo/">Open the demo full screen</a>
+  </p>
+</section>
+
+<main>
+  <section id="what-it-does">
+    <span class="eyebrow">What it does</span>
+    <h2>A scientific instrument for scanned surfaces</h2>
+    <p class="lead">StrataViewer reads the output of photometric stereo,
+    laser line scanning and photogrammetry, and turns it into a streamed
+    3D relief on any WebGL browser.</p>
+    <div class="features">
+      <div class="feature">
+        <img src="manual/images/relight.jpg" alt="The viewer in light mode, with a sphere showing the light direction over the moss relief">
+        <h3>Relight</h3>
+        <p>Move the light across the surface to read the relief, with real shadows.</p>
+      </div>
+      <div class="feature">
+        <img src="manual/images/measurement.jpg" alt="A pinned measurement of 15.1 mm with its elevation profile chart">
+        <h3>Measure</h3>
+        <p>Distances, height differences and elevation profiles, in real units from the scan.</p>
+      </div>
+      <div class="feature">
+        <img src="manual/images/demo-first-view.jpg" alt="The moss plate rendered as a lit relief">
+        <h3>Stream</h3>
+        <p>A quadtree loads tiles at the right detail for the view, up to gigapixel scans.</p>
+      </div>
+      <div class="feature">
+        <img src="manual/images/iiif-osd.jpg" alt="The same dataset opened as a deep zoom image in OpenSeadragon">
+        <h3>Share as IIIF</h3>
+        <p>Publishes and reads IIIF, so the same dataset opens in Mirador or OpenSeadragon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="input-formats">
+    <span class="eyebrow">Input formats</span>
+    <h2>What it accepts</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Format</th><th>Produced by</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Depthmap TIFF</td>
+            <td>Selene PSS, laser line scanners, photogrammetry pipelines</td>
+            <td>Floating point, 32 or 64 bit, in metres. Converted with <code>convert_scan.py</code>.</td>
+          </tr>
+          <tr>
+            <td>Albedo TIFF</td>
+            <td>The same scan</td>
+            <td>16 bit RGB. Becomes the colour layer.</td>
+          </tr>
+          <tr>
+            <td>Strata dataset</td>
+            <td><code>convert_scan.py</code>, or written by hand</td>
+            <td>A directory with <code>dataset.json</code> and 16 bit PNGs. The intermediate format.</td>
+          </tr>
+          <tr>
+            <td>TMS tile pyramid</td>
+            <td><code>generate_tiles.py</code></td>
+            <td>256 px tiles plus <code>metadata.json</code>. This is what the viewer streams.</td>
+          </tr>
+          <tr>
+            <td>IIIF</td>
+            <td><code>generate_iiif_level0.py</code>, <code>generate_iiif_manifest.py</code></td>
+            <td>Image API 3.0 level 0 tree and Presentation 3 manifest. The viewer can boot from a manifest URL.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="quick-start">
+    <span class="eyebrow">Quick start</span>
+    <h2>Running it</h2>
+    <div class="codeblock">
+      <span class="label">From a clone</span>
+      <button class="copy" data-copy="qs1">Copy</button>
+      <pre id="qs1">git clone https://github.com/FactumFoundation/strata-viewer.git
+cd strata-viewer
+npm install
+uv sync
+uv run python scripts/generate_tiles.py
+npm run dev</pre>
+    </div>
+    <div class="codeblock">
+      <span class="label">Boot the viewer in your own page</span>
+      <button class="copy" data-copy="qs2">Copy</button>
+      <pre id="qs2">import { QuadTree } from './src/QuadTree.js';
+import { StrataRenderer } from './src/StrataRenderer.js';
+
+const metadata = await fetch('./moss/metadata.json').then(r =&gt; r.json());
+const quadTree = new QuadTree({ maxLevel: metadata.maxLevel });
+const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });</pre>
+    </div>
+  </section>
+
+  <section id="cite">
+    <span class="eyebrow">Cite this software</span>
+    <h2>For research use</h2>
+    <p class="lead">If StrataViewer is part of your documentation or research
+    workflow, please cite it.</p>
+    <p style="margin-top:16px"><a class="doi" href="https://doi.org/10.5281/zenodo.XXXXXXX">DOI 10.5281/zenodo.XXXXXXX</a></p>
+    <div class="codeblock">
+      <span class="label">BibTeX</span>
+      <button class="copy" data-copy="bib">Copy</button>
+      <pre id="bib">@software{cano_strataviewer_2026,
+  author  = {Cano, Jorge},
+  title   = {StrataViewer},
+  year    = {2026},
+  url     = {https://github.com/FactumFoundation/strata-viewer},
+  doi     = {10.5281/zenodo.XXXXXXX}
+}</pre>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>Apache License 2.0</span>
+    <span>&copy; 2026 Jorge Cano</span>
+    <span>Developed for Factum Foundation</span>
+    <a href="https://www.factumfoundation.org/" aria-label="Factum Foundation">
+      <img src="assets/factum-logo.svg" alt="Factum Foundation logo">
+    </a>
+    <span>Sample: nature-printed moss, Alois Auer, 1853. Private collection of Adam Lowe.</span>
+    <a href="https://factumfoundation.xyz/strata-viewer/gallery.html">More examples</a>
+  </div>
+</footer>
+
+<script>
+  for (const btn of document.querySelectorAll('.copy')) {
+    btn.addEventListener('click', async () => {
+      const text = document.getElementById(btn.dataset.copy).textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+      } catch {
+        btn.textContent = 'Select and copy';
+      }
+    });
+  }
+</script>
+</body>
+</html>

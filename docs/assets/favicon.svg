@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Strata Viewer: stacked isometric layers, viridis -->
+  <g stroke="#0a0a0a" stroke-width="1.5" stroke-linejoin="round">
+    <path d="M32 30 L58 44 L32 58 L6 44 Z" fill="#440154"/>
+    <path d="M32 18 L58 32 L32 46 L6 32 Z" fill="#21918c"/>
+    <path d="M32 6 L58 20 L32 34 L6 20 Z" fill="#fde725"/>
+  </g>
+</svg>

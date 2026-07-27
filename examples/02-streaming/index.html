@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02: Tile streaming</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+</head>
+<body>
+  <div id="hud"></div>
+
+  <div id="controls">
+    <div class="title">02: Tile streaming</div>
+
+    <label><input type="checkbox" id="axisHelper"> Axis helper</label>
+    <label><input type="checkbox" id="debugWires" checked> Debug wireframes</label>
+    <label><input type="checkbox" id="debugLabels" checked> Tile labels (HUD)</label>
+    <label><input type="checkbox" id="tileFade" checked> Tile fade</label>
+
+
+    <div class="section">
+      <label>Max SSE: <input type="range" id="sseSlider" min="1" max="30" value="6" step="0.5"> <span id="sseVal">6</span></label>
+      <label>Max tiles: <input type="range" id="maxTilesSlider" min="50" max="800" value="400" step="50"> <span id="maxTilesVal">400</span></label>
+      <label>Split floor: <input type="range" id="splitFloorSlider" min="0.5" max="1" value="0.5" step="0.05"> <span id="splitFloorVal">0.50</span></label>
+    </div>
+
+    <div class="section">
+      <a href="../../">← Main menu</a>
+    </div>
+  </div>
+
+  <div id="help">LMB: orbit &nbsp;|&nbsp; RMB: pan &nbsp;|&nbsp; Scroll: zoom &nbsp;|&nbsp; Ctrl+Click: menu</div>
+
+  <script type="module" src="../context-menu.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

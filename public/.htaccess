@@ -1,0 +1,22 @@
+# Cache policy for the deployed viewer (OVH shared hosting, Apache).
+#
+# Problem this solves: without Cache-Control headers, browsers cache index.html
+# heuristically and keep referencing OLD hashed bundles after a deploy, so the
+# site looks "not updated" until a hard refresh.
+#
+# - Stable-named text files (.html/.json) are tiny: always revalidate.
+# - Hashed assets (assets/*.js|css) change name when content changes: cache
+#   forever.
+# - Tiles keep their names across regenerations: cache 1 day.
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(js|css|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.png$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>

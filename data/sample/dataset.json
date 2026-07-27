@@ -1,0 +1,17 @@
+{
+  "name": "auer-moss-2048px",
+  "credit": "Nature-printed moss, Alois Auer, \"Der polygraphische Apparat\", Vienna, 1853. From the private collection of Adam Lowe.",
+  "pixelSizeMM": 0.024600484261501212,
+  "albedo": "albedo.png",
+  "heightChannels": {
+    "height_hf": {
+      "file": "height_hf.png",
+      "heightRangeMM": 0.310039
+    },
+    "height_full": {
+      "file": "height_full.png",
+      "heightRangeMM": 1.569606
+    }
+  },
+  "defaultHeightChannel": "height_hf"
+}

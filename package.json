@@ -1,0 +1,29 @@
+{
+  "name": "strata-viewer",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "author": "Jorge Cano",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "generate-tiles": "node scripts/generate-tiles.js"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.9"
+  },
+  "description": "Web viewer for high resolution surface scans",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FactumFoundation/strata-viewer.git"
+  }
+}
