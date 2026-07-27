@@ -229,18 +229,28 @@
   .footer-inner {
     max-width: 880px;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px 28px;
     font-size: 13px;
     color: var(--muted);
   }
-  .footer-inner img {
-    height: 22px;
-    width: auto;
-    filter: invert(1) brightness(0.72);
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 28px;
   }
+  .footer-row + .footer-row { margin-top: 12px; }
+  .footer-factum {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-factum img {
+    height: 30px;
+    width: auto;
+    filter: invert(1);
+    opacity: 0.75;
+  }
+  .footer-factum a:hover img { opacity: 1; }
 
   @media (max-width: 640px) {
     section { padding-top: 64px; }
@@ -391,14 +401,19 @@ const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });
 
 <footer>
   <div class="footer-inner">
-    <span>Apache License 2.0</span>
-    <span>&copy; 2026 Jorge Cano</span>
-    <span>Developed for Factum Foundation</span>
-    <a href="https://www.factumfoundation.org/" aria-label="Factum Foundation">
-      <img src="assets/factum-logo.svg" alt="Factum Foundation logo">
-    </a>
-    <span>Sample: nature-printed moss, Alois Auer, 1853. Private collection of Adam Lowe.</span>
-    <a href="https://factumfoundation.xyz/strata-viewer/gallery.html">More examples</a>
+    <div class="footer-row">
+      <span>&copy; 2026 Jorge Cano</span>
+      <span>Apache License 2.0</span>
+      <span class="footer-factum">Developed for
+        <a href="https://www.factumfoundation.org/" aria-label="Factum Foundation">
+          <img src="assets/factum-logo.svg" alt="Factum Foundation logo">
+        </a>
+      </span>
+    </div>
+    <div class="footer-row">
+      <span>Sample: nature-printed moss, Alois Auer, 1853. Private collection of Adam Lowe.</span>
+      <a href="https://factumfoundation.xyz/strata-viewer/gallery.html">More examples</a>
+    </div>
   </div>
 </footer>
 
