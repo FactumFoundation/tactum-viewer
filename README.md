@@ -7,7 +7,7 @@ a quadtree LOD streamer, and it works inside the IIIF ecosystem.
 
 ![Strata viewer showing a nature-printed moss by Alois Auer](assets/hero.jpg)
 
-**[Live demo](https://factumfoundation.xyz/strata-viewer/demo/)** · **[User manual](docs/manual/index.md)**
+**[Live demo](https://factumfoundation.xyz/strata-viewer/demo/)** · **[User manual](docs/manual/index.md)** · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21614286.svg)](https://doi.org/10.5281/zenodo.21614286)
 
 ## Features
 
