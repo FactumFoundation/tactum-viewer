@@ -468,9 +468,9 @@ async function init() {
         `Streaming: ${terrain.tilesLoaded} loaded, ${terrain.tilesInFlight} pending<br>` +
         `Z exag: ${terrain.zExaggeration.toFixed(1)}×`;
     } else {
-      $hud.innerHTML = `FPS: <b>${fps}</b>`;
+      $hud.innerHTML = '';
     }
-    $hud.style.display = '';
+    $hud.style.display = $debugLabels.checked ? '' : 'none';
   }
 
   // ── Resize ────────────────────────────────────────────────────────────
