@@ -1,9 +1,9 @@
 /**
- * Custom Ctrl+Click context menu: Strata Viewer branding + screenshot.
+ * Custom Ctrl+Click context menu: Tactum Viewer branding + screenshot.
  * Include via <script type="module" src="../context-menu.js"></script>
  */
 
-const NAME = 'Strata Viewer';
+const NAME = 'Tactum Viewer';
 const VERSION = '0.1.0';
 const COPYRIGHT = '\u00a9 2026 Jorge Cano';
 
@@ -114,7 +114,7 @@ document.getElementById('ctx-screenshot').addEventListener('click', (e) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `strata-${Date.now()}.png`;
+    a.download = `tactum-${Date.now()}.png`;
     a.click();
     URL.revokeObjectURL(url);
   }, 'image/png');

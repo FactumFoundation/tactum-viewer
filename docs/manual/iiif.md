@@ -1,8 +1,8 @@
 # IIIF
 
-Strata datasets can be published as [IIIF](https://iiif.io/) resources.
+Tactum datasets can be published as [IIIF](https://iiif.io/) resources.
 This gives you two things. Any standard IIIF viewer can show the albedo as
-a deep zoom image. And Strata itself can boot from a IIIF manifest, so a
+a deep zoom image. And Tactum itself can boot from a IIIF manifest, so a
 dataset can live on any static server and be shared with a URL.
 
 ## Publishing a dataset
@@ -25,7 +25,7 @@ The level-0 tree is plain files, so any web server can serve it. No image
 server is needed. The manifest carries the height channels as an extension
 of the ARCHiOx LightingMap pattern (`mapType: "height"`).
 
-## Booting Strata from a manifest
+## Booting Tactum from a manifest
 
 ```
 http://localhost:5173/demo/?manifest=http://localhost:5173/moss/iiif/manifest.json
@@ -44,7 +44,7 @@ parameter instead.
 
 ![Deep zoom in OpenSeadragon](images/iiif-osd.jpg)
 
-A stock 2D viewer only shows the albedo. The relief needs Strata, which is
+A stock 2D viewer only shows the albedo. The relief needs Tactum, which is
 the point of the height extension: the same manifest serves both.
 
 One known limitation: Universal Viewer does not accept `image/png` bodies,

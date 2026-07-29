@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: If you use this software, please cite it as below.
 type: software
-title: Strata Viewer
+title: Tactum Viewer
 authors:
   - family-names: Cano
     given-names: Jorge
 license: Apache-2.0
-repository-code: https://github.com/FactumFoundation/strata-viewer
-url: https://factumfoundation.xyz/strata-viewer/
+repository-code: https://github.com/FactumFoundation/tactum-viewer
+url: https://factumfoundation.xyz/tactum-viewer/
 abstract: Web viewer for high resolution surface scans. It streams albedo
   and height tiles and renders them as a 3D relief that you can relight,
   measure and inspect in the browser.

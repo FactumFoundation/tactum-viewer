@@ -1,5 +1,5 @@
 /**
- * Strata Demo: Nature-printed moss (Alois Auer, 1853)
+ * Tactum Demo: Nature-printed moss (Alois Auer, 1853)
  *
  * Float32 depthmaps + RGB albedo from a nature-printed moss plate (Alois
  * Auer's Naturselbstdruck process, 1853). Two switchable height fields:
@@ -13,7 +13,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { QuadTree } from '../src/QuadTree.js';
-import { StrataRenderer } from '../src/StrataRenderer.js';
+import { TactumRenderer } from '../src/TactumRenderer.js';
 import { loadIIIFDataset } from '../src/iiif.js';
 import { MeasureTool, makeLabel } from '../src/MeasureTool.js';
 import { InfoOverlay } from '../src/InfoOverlay.js';
@@ -174,10 +174,10 @@ async function init() {
     scene.add(createRuler(metadata, mmPerUnit));
   }
 
-  // ── QuadTree + StrataRenderer ────────────────────────────────────────
+  // ── QuadTree + TactumRenderer ────────────────────────────────────────
   let heightChannel = metadata.defaultHeightChannel;
   const quadTree = new QuadTree({ maxLevel: metadata.maxLevel });
-  const terrain = new StrataRenderer(scene, metadata, {
+  const terrain = new TactumRenderer(scene, metadata, {
     zExaggeration: DEFAULT_Z_EXAG[heightChannel] ?? 1.0,
     segments: isMobile ? 128 : 256,
     shadowMapSize: isMobile ? 1024 : 2048,
@@ -482,7 +482,7 @@ async function init() {
   });
 
   // debug handle for console inspection
-  window.__strata = { camera, controls, terrain, quadTree };
+  window.__tactum = { camera, controls, terrain, quadTree };
 
   loop();
 }

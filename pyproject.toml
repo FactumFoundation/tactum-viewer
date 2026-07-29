@@ -1,7 +1,7 @@
 [project]
-name = "strata-viewer-scripts"
+name = "tactum-viewer-scripts"
 version = "1.0.0"
-description = "Tile generation scripts for the Strata viewer"
+description = "Tile generation scripts for the Tactum viewer"
 license = "Apache-2.0"
 requires-python = ">=3.11"
 dependencies = [

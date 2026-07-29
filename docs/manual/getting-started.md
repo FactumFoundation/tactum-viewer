@@ -3,8 +3,8 @@
 You need Node 20 or newer and [uv](https://docs.astral.sh/uv/). Then:
 
 ```bash
-git clone https://github.com/FactumFoundation/strata-viewer.git
-cd strata-viewer
+git clone https://github.com/FactumFoundation/tactum-viewer.git
+cd tactum-viewer
 npm install
 uv sync
 uv run python scripts/generate_tiles.py

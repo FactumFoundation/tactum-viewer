@@ -1,10 +1,10 @@
 """
 IIIF Presentation v3 manifest generator.
 
-Converts a Strata metadata.json into a IIIF Presentation 3 manifest where:
+Converts a Tactum metadata.json into a IIIF Presentation 3 manifest where:
   - albedo is a painting annotation with a static Image API 3.0 (level0) service
   - height channels are additional Choice items carrying a LightingMapExtension
-    service (mapType "height") extended with the physical properties Strata
+    service (mapType "height") extended with the physical properties Tactum
     needs (variant, heightRangeMM, zScale, encoding descriptor)
   - the canvas carries a Physical Dimensions service (pixel size in mm)
 
@@ -168,7 +168,7 @@ def build_manifest(metadata, base_url, label, channels=None):
 
 def main():
     parser = argparse.ArgumentParser(description='Generate a IIIF Presentation v3 manifest from metadata.json.')
-    parser.add_argument('--metadata', required=True, help='path to a Strata metadata.json')
+    parser.add_argument('--metadata', required=True, help='path to a Tactum metadata.json')
     parser.add_argument('--base-url', required=True, help='public base URL of the dataset (no trailing slash)')
     parser.add_argument('--label', required=True, help='manifest label (English)')
     parser.add_argument('--out', help='output path (default: manifest.json next to metadata.json)')

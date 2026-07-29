@@ -1,4 +1,4 @@
-"""Convert scanner output into a Strata Viewer dataset.
+"""Convert scanner output into a Tactum Viewer dataset.
 
 Reads a source directory with one or more floating point height channel
 TIFFs (in metres) and a uint16 RGB albedo TIFF, optionally decimates them,
@@ -77,7 +77,7 @@ def parse_channel(spec):
 
 def main():
     p = argparse.ArgumentParser(
-        description='Convert scanner output into a Strata Viewer dataset.')
+        description='Convert scanner output into a Tactum Viewer dataset.')
     p.add_argument('--src', required=True,
                     help='directory with the scan files')
     p.add_argument('--albedo', required=True,

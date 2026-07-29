@@ -469,7 +469,7 @@ wheels = [
 ]
 
 [[package]]
-name = "strata-viewer-scripts"
+name = "tactum-viewer-scripts"
 version = "1.0.0"
 source = { virtual = "." }
 dependencies = [

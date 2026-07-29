@@ -1,5 +1,5 @@
 /**
- * StrataRenderer: manages Three.js meshes with height-displaced ShaderMaterial
+ * TactumRenderer: manages Three.js meshes with height-displaced ShaderMaterial
  *
  * Adapted for datasets with a floating point depthmap and RGB albedo.
  * Includes shadow mapping with PCSS soft shadows.
@@ -19,7 +19,7 @@ const DEFAULT_SEGMENTS = 256;
 // old cover expires too early, the holes come back.
 const RETIRE_TIMEOUT_MS = 15000;
 
-export class StrataRenderer {
+export class TactumRenderer {
   constructor(scene, metadata, { zExaggeration = 1, segments = DEFAULT_SEGMENTS, shadowMapSize = 2048, usePCSS = true, tileBaseUrl = '../moss/', heightChannel = 'height', tileUrlBuilder = null, padTileSize = 0 } = {}) {
     this._segments = segments;
     this._usePCSS = usePCSS;

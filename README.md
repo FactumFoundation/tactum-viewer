@@ -1,13 +1,13 @@
-# Strata Viewer
+# Tactum Viewer
 
-Strata Viewer is a web viewer for high resolution surface scans. It streams
+Tactum Viewer is a web viewer for high resolution surface scans. It streams
 albedo and height tiles and renders them as a 3D relief that you can
 relight, measure and inspect in the browser. It is built with three.js and
 a quadtree LOD streamer, and it works inside the IIIF ecosystem.
 
-![Strata viewer showing a nature-printed moss by Alois Auer](assets/hero.jpg)
+![Tactum viewer showing a nature-printed moss by Alois Auer](assets/hero.jpg)
 
-**[Live demo](https://factumfoundation.xyz/strata-viewer/demo/)** · **[User manual](docs/manual/index.md)** · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21614286.svg)](https://doi.org/10.5281/zenodo.21614286)
+**[Live demo](https://factumfoundation.xyz/tactum-viewer/demo/)** · **[User manual](docs/manual/index.md)** · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21614286.svg)](https://doi.org/10.5281/zenodo.21614286)
 
 ## Features
 
@@ -26,8 +26,8 @@ a quadtree LOD streamer, and it works inside the IIIF ecosystem.
 Requirements: Node 20+, [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/FactumFoundation/strata-viewer.git
-cd strata-viewer
+git clone https://github.com/FactumFoundation/tactum-viewer.git
+cd tactum-viewer
 npm install
 uv sync
 uv run python scripts/generate_tiles.py   # tiles from the bundled sample
@@ -48,11 +48,11 @@ see in the viewer is a relief scan of that impression, not a photograph.
 
 ## IIIF
 
-Strata publishes and consumes [IIIF](https://iiif.io/). A IIIF Presentation
+Tactum publishes and consumes [IIIF](https://iiif.io/). A IIIF Presentation
 3 manifest exposes the albedo in any standard 2D viewer such as Mirador,
 Universal Viewer or OpenSeadragon. The same manifest carries the height
 channels as an extension of the ARCHiOx LightingMap pattern
-(`mapType: "height"`), and Strata reads them to build the displaced
+(`mapType: "height"`), and Tactum reads them to build the displaced
 surface. Tiles are served as a static Image API 3.0 level-0 tree. These are
 plain files, so no image server is required.
 
@@ -99,7 +99,7 @@ about 1.3 GB. It contains the raw 32 bit float depthmap in metres and the
 16 bit RGB albedo, 9998x19172 pixels at 12.3 µm per pixel.
 
 ```bash
-# download the zip from https://factumfoundation.xyz/strata-viewer/downloads/auer-moss-complete.zip and unzip into data/, then:
+# download the zip from https://factumfoundation.xyz/tactum-viewer/downloads/auer-moss-complete.zip and unzip into data/, then:
 uv run python scripts/extract_hf_relief.py \
     --src data/auer-moss-complete/depthmap_m1_f32.tif \
     --cutoff 0.005 --out data/auer-moss-complete/depthmap_hf.tif
@@ -195,18 +195,18 @@ dataset without touching the code by passing `?manifest=`, see
 ## Building a viewer with the library
 
 The core is two classes. `QuadTree` computes which tiles are visible at the
-current camera position and screen space error threshold. `StrataRenderer`
+current camera position and screen space error threshold. `TactumRenderer`
 owns the three.js meshes, materials and tile streaming for those tiles. A
 minimal boot sequence, condensed from `demo/main.js`:
 
 ```js
 import { QuadTree } from './src/QuadTree.js';
-import { StrataRenderer } from './src/StrataRenderer.js';
+import { TactumRenderer } from './src/TactumRenderer.js';
 
 const metadata = await fetch('./moss/metadata.json').then(r => r.json());
 
 const quadTree = new QuadTree({ maxLevel: metadata.maxLevel });
-const terrain = new StrataRenderer(scene, metadata, {
+const terrain = new TactumRenderer(scene, metadata, {
   tileBaseUrl: './moss/',
   heightChannel: metadata.defaultHeightChannel,
   zExaggeration: 1.0,
@@ -248,7 +248,7 @@ uv run pytest     # Python tests, tile generator + IIIF manifest
 Repo layout:
 
 ```
-src/          viewer library: QuadTree, StrataRenderer, IIIF loader, tools
+src/          viewer library: QuadTree, TactumRenderer, IIIF loader, tools
 demo/         the full demo (moss dataset)
 examples/     smaller, focused examples (quadtree basics, streaming, IIIF test pages)
 scripts/      Python tile and IIIF generators, plus the JS procedural tile generator
@@ -271,9 +271,9 @@ Adam Lowe.
 
 Thanks to Richard Allen, author of the [ARCHiOx Mirador
 plugin](https://github.com/bodleian/archiox-mirador-plugin), for the many
-conversations that shaped the IIIF side of Strata, and for the work we
+conversations that shaped the IIIF side of Tactum, and for the work we
 did together on [serving IIIF tiles as static
-files](https://github.com/bodleian/iiif-static-choices). The way Strata
+files](https://github.com/bodleian/iiif-static-choices). The way Tactum
 carries height channels in a manifest follows the LightingMap pattern of
 his work for
 [ARCHiOx](https://factumfoundation.org/our-projects/institutional-collaborations/archiox-analysing-and-recording-cultural-heritage-in-oxford/)

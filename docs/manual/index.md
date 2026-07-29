@@ -1,4 +1,4 @@
-# Strata Viewer, user manual
+# Tactum Viewer, user manual
 
 This manual covers the demo viewer and the data tools, with screenshots.
 For a quick overview read the [README](../../README.md) first.

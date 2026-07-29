@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Strata Viewer landing page. A single static file, deployed at
-  https://factumfoundation.xyz/strata-viewer/ next to the demo.
+  Tactum Viewer landing page. A single static file, deployed at
+  https://factumfoundation.xyz/tactum-viewer/ next to the demo.
   The DOI in "Cite this software" is the Zenodo concept DOI, which
   always resolves to the latest archived release.
 -->
@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Strata Viewer</title>
+<title>Tactum Viewer</title>
 <meta name="description" content="Open source web viewer for high resolution surface scans. Streams tiled albedo and height data as a relief you can relight, measure and inspect in the browser.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <style>
@@ -261,12 +261,12 @@
 <body>
 
 <header class="top">
-  <h1>Strata Viewer</h1>
+  <h1>Tactum Viewer</h1>
   <p>An open source web viewer that streams high resolution surface scans
      as a relief you can relight, measure and inspect in the browser.</p>
   <div class="top-links">
-    <a href="https://github.com/FactumFoundation/strata-viewer">View on GitHub</a>
-    <a href="https://github.com/FactumFoundation/strata-viewer/blob/main/docs/manual/index.md">Documentation</a>
+    <a href="https://github.com/FactumFoundation/tactum-viewer">View on GitHub</a>
+    <a href="https://github.com/FactumFoundation/tactum-viewer/blob/main/docs/manual/index.md">Documentation</a>
   </div>
 </header>
 
@@ -274,13 +274,13 @@
   <!-- The live viewer. The still image behind it paints first, the iframe
        covers it when the demo has loaded. -->
   <div class="frame">
-    <iframe src="https://factumfoundation.xyz/strata-viewer/demo/?embed"
-            title="Strata Viewer live demo: nature-printed moss, Alois Auer, 1853"
+    <iframe src="https://factumfoundation.xyz/tactum-viewer/demo/?embed"
+            title="Tactum Viewer live demo: nature-printed moss, Alois Auer, 1853"
             loading="eager" allow="fullscreen"></iframe>
   </div>
   <p class="viewer-hint">
     <span>Drag to orbit. Scroll to zoom. Shift and drag to move the light.</span>
-    <a href="https://factumfoundation.xyz/strata-viewer/demo/">Open the demo full screen</a>
+    <a href="https://factumfoundation.xyz/tactum-viewer/demo/">Open the demo full screen</a>
   </p>
 </section>
 
@@ -288,7 +288,7 @@
   <section id="what-it-does">
     <span class="eyebrow">What it does</span>
     <h2>An instrument for scanned surfaces</h2>
-    <p class="lead">Strata Viewer reads the output of photometric stereo,
+    <p class="lead">Tactum Viewer reads the output of photometric stereo,
     laser line scanning and photogrammetry, and turns it into a streamed
     3D relief on any WebGL browser.</p>
     <div class="features">
@@ -335,7 +335,7 @@
             <td>16 bit RGB, the same pixel dimensions as the depthmap. Becomes the colour layer.</td>
           </tr>
           <tr>
-            <td>Strata dataset</td>
+            <td>Tactum dataset</td>
             <td><code>convert_scan.py</code>, or written by hand</td>
             <td>A directory with <code>dataset.json</code> and 16 bit PNGs. The intermediate format.</td>
           </tr>
@@ -362,8 +362,8 @@
     <div class="codeblock">
       <span class="label">From a clone</span>
       <button class="copy" data-copy="qs1">Copy</button>
-      <pre id="qs1">git clone https://github.com/FactumFoundation/strata-viewer.git
-cd strata-viewer
+      <pre id="qs1">git clone https://github.com/FactumFoundation/tactum-viewer.git
+cd tactum-viewer
 npm install
 uv sync
 uv run python scripts/generate_tiles.py
@@ -373,28 +373,28 @@ npm run dev</pre>
       <span class="label">Boot the viewer in your own page</span>
       <button class="copy" data-copy="qs2">Copy</button>
       <pre id="qs2">import { QuadTree } from './src/QuadTree.js';
-import { StrataRenderer } from './src/StrataRenderer.js';
+import { TactumRenderer } from './src/TactumRenderer.js';
 
 const metadata = await fetch('./moss/metadata.json').then(r =&gt; r.json());
 const quadTree = new QuadTree({ maxLevel: metadata.maxLevel });
-const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });</pre>
+const terrain = new TactumRenderer(scene, metadata, { tileBaseUrl: './moss/' });</pre>
     </div>
   </section>
 
   <section id="cite">
     <span class="eyebrow">Cite this software</span>
     <h2>For research use</h2>
-    <p class="lead">If Strata Viewer is part of your documentation or research
+    <p class="lead">If Tactum Viewer is part of your documentation or research
     workflow, please cite it.</p>
     <p style="margin-top:16px"><a class="doi" href="https://doi.org/10.5281/zenodo.21614286">DOI 10.5281/zenodo.21614286</a></p>
     <div class="codeblock">
       <span class="label">BibTeX</span>
       <button class="copy" data-copy="bib">Copy</button>
-      <pre id="bib">@software{cano_strataviewer_2026,
+      <pre id="bib">@software{cano_tactumviewer_2026,
   author  = {Cano, Jorge},
-  title   = {Strata Viewer},
+  title   = {Tactum Viewer},
   year    = {2026},
-  url     = {https://github.com/FactumFoundation/strata-viewer},
+  url     = {https://github.com/FactumFoundation/tactum-viewer},
   doi     = {10.5281/zenodo.21614286}
 }</pre>
     </div>
@@ -414,7 +414,7 @@ const terrain = new StrataRenderer(scene, metadata, { tileBaseUrl: './moss/' });
     </div>
     <div class="footer-row">
       <span>Sample: nature-printed moss, Alois Auer, 1853. Private collection of Adam Lowe.</span>
-      <a href="https://factumfoundation.xyz/strata-viewer/gallery.html">Technical examples</a>
+      <a href="https://factumfoundation.xyz/tactum-viewer/gallery.html">Technical examples</a>
     </div>
   </div>
 </footer>

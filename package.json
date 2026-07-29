@@ -1,5 +1,5 @@
 {
-  "name": "strata-viewer",
+  "name": "tactum-viewer",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "author": "Jorge Cano",
@@ -24,6 +24,6 @@
   "description": "Web viewer for high resolution surface scans",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FactumFoundation/strata-viewer.git"
+    "url": "git+https://github.com/FactumFoundation/tactum-viewer.git"
   }
 }
