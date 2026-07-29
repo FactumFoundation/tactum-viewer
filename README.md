@@ -1,6 +1,6 @@
 # Tactum Viewer
 
-Tactum Viewer is a web viewer for high resolution surface scans. It streams
+Tactum is a web viewer for high resolution surface scans. It streams
 albedo and height tiles and renders them as a 3D relief that you can
 relight, measure and inspect in the browser. It is built with three.js and
 a quadtree LOD streamer, and it works inside the IIIF ecosystem.
