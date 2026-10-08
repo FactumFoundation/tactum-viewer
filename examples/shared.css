@@ -201,7 +201,7 @@ canvas { display: block; }
 }
 
 /* ── Light toggle button (bottom-left, above help) ───────────────────── */
-#lightToggle, #measureToggle, #infoToggle {
+#lightToggle, #measureToggle, #infoToggle, #albedoButton {
   position: fixed;
   bottom: 52px;
   left: 16px;
@@ -222,7 +222,7 @@ canvas { display: block; }
   touch-action: manipulation;
 }
 
-#lightToggle:hover, #measureToggle:hover, #infoToggle:hover {
+#lightToggle:hover, #measureToggle:hover, #infoToggle:hover, #albedoButton:hover {
   color: rgba(255, 255, 255, 0.7);
   border-color: rgba(255, 255, 255, 0.15);
 }
@@ -242,6 +242,15 @@ canvas { display: block; }
 }
 
 #infoToggle { bottom: 148px; }
+
+/* Surface-only button: shows the relief in grey, without colour */
+#albedoButton { bottom: 196px; }
+
+#albedoButton.active {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+}
 
 #infoToggle.active {
   color: rgba(255, 255, 255, 0.9);

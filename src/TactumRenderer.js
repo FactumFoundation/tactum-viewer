@@ -68,6 +68,7 @@ export class TactumRenderer {
 
     // ── Shadow mapping ────────────────────────────────────────────────
     this._shadowEnabled = true;
+    this._albedoEnabled = true;
     this._shadowMapSize = shadowMapSize;
     this._shadowBias = 0.001;
     this._shadowIntensity = 1.0;
@@ -196,6 +197,7 @@ export class TactumRenderer {
       uniforms: {
         heightMap: { value: this._blackTex },
         albedoMap: { value: this._greyTex },
+        albedoEnabled: { value: this._albedoEnabled },
         zScale: { value: this.zScale },
         zExaggeration: { value: this.zExaggeration },
         tileSize: { value: 1.0 },
@@ -383,6 +385,15 @@ export class TactumRenderer {
   }
 
   setShadowEnabled(on) { this._shadowEnabled = on; }
+
+  /** Colour on, or the bare surface in mid grey (masked background stays black). */
+  setAlbedoEnabled(on) {
+    this._albedoEnabled = on;
+    for (const [, entry] of this.pool) {
+      entry.mat.uniforms.albedoEnabled.value = on;
+    }
+  }
+
   setShadowBias(val) {
     this._shadowBias = val;
     for (const [, entry] of this.pool) {
