@@ -378,6 +378,15 @@ async function init() {
   const $shadowSoftVal   = document.getElementById('shadowSoftnessVal');
 
   $shadowToggle.onchange = () => { terrain.setShadowEnabled($shadowToggle.checked); };
+  const $albedoToggle = document.getElementById('albedoToggle');
+  const $albedoButton = document.getElementById('albedoButton');
+  const setAlbedo = (on) => {
+    terrain.setAlbedoEnabled(on);
+    $albedoToggle.checked = on;
+    $albedoButton.classList.toggle('active', !on);
+  };
+  $albedoToggle.onchange = () => setAlbedo($albedoToggle.checked);
+  $albedoButton.onclick = () => setAlbedo(!$albedoToggle.checked);
   $shadowBias.oninput = () => {
     const val = +$shadowBias.value;
     $shadowBiasVal.textContent = val.toFixed(4);
