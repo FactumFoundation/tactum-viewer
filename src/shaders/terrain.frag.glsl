@@ -3,6 +3,7 @@
 // with shadow mapping (PCSS + Poisson PCF, slope-scaled bias)
 
 uniform sampler2D albedoMap;
+uniform bool albedoEnabled;
 uniform vec3 lightDir;
 uniform vec3 ambientColor;
 uniform vec3 lightColor;
@@ -17,6 +18,8 @@ varying vec2 vUv;
 varying vec3 vNormal;
 varying vec3 vWorldPos;
 varying vec4 vLightSpacePos;
+
+const vec3 SURFACE_FALLBACK_COLOR = vec3(0.5);
 
 // 16-tap Poisson disk (well-distributed, low discrepancy)
 const int POISSON_SAMPLES = 16;
@@ -68,6 +71,8 @@ float findBlockerDepth(vec3 projCoords, float bias, vec2 texelSize, float search
 
 void main() {
   vec3 albedo = texture2D(albedoMap, vUv).rgb;
+  // Surface only: mid grey, except pure black, which is a masked background
+  if (!albedoEnabled && max(albedo.r, max(albedo.g, albedo.b)) > 0.0) albedo = SURFACE_FALLBACK_COLOR;
 
   vec3 N = normalize(vNormal);
   vec3 L = normalize(lightDir);
