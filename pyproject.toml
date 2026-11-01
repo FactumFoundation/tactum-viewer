@@ -3,7 +3,7 @@ name = "tactum-viewer-scripts"
 version = "1.0.0"
 description = "Tile generation scripts for the Tactum viewer"
 license = "Apache-2.0"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.15"
 dependencies = [
     "numpy>=2.0",
     "pillow>=10.0",
